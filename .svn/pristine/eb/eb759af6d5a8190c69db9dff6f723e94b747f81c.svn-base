@@ -1,0 +1,44 @@
+package calc;
+
+public class StringCalculator {
+
+
+	public int add(String numbers) throws Exception{
+		if (moreThanOneNumber(numbers)){
+			return sumAllNumbers(splitString(numbers));
+		} else if (numbers.length() == 1){
+			return Integer.parseInt(numbers);
+		}
+		return 0;
+	}
+
+	private int sumAllNumbers(String[] numbers) throws Exception {
+		int sum = 0;
+		for (String number : numbers){
+			if(Integer.parseInt(number)<0) {
+				throw new Exception("Negatives not allowed: "+number);
+			}
+			sum += Integer.parseInt(number);
+		}	
+		return sum;
+	}
+
+	private boolean moreThanOneNumber(String numbers) {
+		return numbers.length() != 0 && numbers.length() > 1;
+	}
+	
+	private String[] splitString(String numbers){
+		String delimiter;
+		String[] numbArray;
+		if (numbers.contains("//")){
+			delimiter = ""+numbers.replace("//", "").charAt(0);
+			numbers = numbers.split("\n")[1];
+			numbArray = numbers.split(delimiter);
+			return numbArray;
+		}else{
+			numbArray = numbers.split(",|\\\n");
+			return numbArray;
+		}
+	}
+
+}
