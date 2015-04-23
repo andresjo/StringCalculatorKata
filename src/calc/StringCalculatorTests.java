@@ -58,10 +58,7 @@ public class StringCalculatorTests {
 	
 	@Test (expected = Exception.class)
 	public void Add_InputNegativeNumber_ThrowsException() {
-		int expected = 3;
-		int actual = stringCalc.add("1,2,-2,3,-1");
-		
-		assertEquals(expected, actual);
+		stringCalc.add("1,2,-2,3,-1");
 	}
 	
 	@Test
@@ -91,7 +88,7 @@ public class StringCalculatorTests {
 	@Test
 	public void Add_InputWithMultipleDelimitersOfAnyLength_ReturnsSum() {
 		int expected = 6;
-		int actual = stringCalc.add("//[***][%%%]\n1***2%%%3");
+		int actual = stringCalc.add("//[***][%%]\n1***2%%3");
 		
 		assertEquals(expected, actual);
 	}
